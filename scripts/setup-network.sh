@@ -10,7 +10,7 @@ docker exec node1 bitcoin-cli -regtest -rpcuser=admin -rpcpassword=pass createwa
 
 echo "Mining 101 blocks on node1..."
 ADDR=$(docker exec node1 bitcoin-cli -regtest -rpcuser=admin -rpcpassword=pass getnewaddress)
-docker exec node1 bitcoin-cli -regtest -rpcuser=admin -rpcpassword=pass generatetoaddress 101 $ADDR
+docker exec node1 bitcoin-cli -regtest -rpcuser=admin -rpcpassword=pass generatetoaddress 101 "$ADDR"
 
 # Connect node2 to node1
 echo "Connecting node2 to node1..."
