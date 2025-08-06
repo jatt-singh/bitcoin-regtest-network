@@ -1,0 +1,28 @@
+name: CI - Lint Bash & Docker
+
+on:
+  push:
+    branches:
+      - "**"  # All branches
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: Lint Bash scripts
+        run: shellcheck scripts/*.sh
+
+      - name: Lint Dockerfile
+        run: |
+          if [ -f Dockerfile ]; then
+            docker run --rm -i hadolint/hadolint < Dockerfile || true
+          else
+            echo "No Dockerfile to lint"
+          fi

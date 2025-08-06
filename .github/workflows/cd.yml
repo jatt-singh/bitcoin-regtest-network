@@ -1,0 +1,26 @@
+name: CD - Regtest Network Run
+
+on:
+  push:
+    branches:
+      - "**"  # All branches
+
+jobs:
+  regtest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set executable permissions
+        run: chmod +x scripts/*.sh
+
+      - name: Build and run regtest network
+        run: |
+          docker compose up -d
+          sleep 5
+          ./scripts/setup-network.sh
+          ./scripts/send-transaction.sh
+
+      - name: Tear down
+        run: docker compose down -v
