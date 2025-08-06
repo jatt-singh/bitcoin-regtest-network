@@ -40,7 +40,7 @@ This project sets up a **private Bitcoin network (regtest)** using **Docker** an
 
 ## Step 1: Clone the Repository
 
-`git clone https://github.com/YOUR_USERNAME/bitcoin-regtest-docker.git
+`git clone https://github.com/jatt-singh/bitcoin-regtest-network.git
  cd bitcoin-regtest-docker
 `
 
